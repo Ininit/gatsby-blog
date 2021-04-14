@@ -246,8 +246,8 @@ a:focus {
   padding: var(--spacing-10) var(--spacing-5);
 }
 
-.global-wrapper[data-is-root-path="true"] .bio {
-  margin-bottom: var(--spacing-20);
+.global-wrapper .footer {
+  text-align: center;
 }
 
 .global-header {
@@ -288,7 +288,8 @@ a:focus {
 
 .bio {
   display: flex;
-  margin-bottom: var(--spacing-16);
+  padding-bottom: var(--spacing-8);
+  border-bottom: 1px dashed var(--color-accent);
 }
 
 .bio p {
@@ -300,6 +301,14 @@ a:focus {
   margin-bottom: var(--spacing-0);
   min-width: 50px;
   border-radius: 100%;
+}
+
+.bio-summary p:first-child {
+  font-size: 1.2rem;
+}
+
+.bio-summary p:last-child {
+  font-size: 0.8rem;
 }
 
 .blog-post header h1 {
