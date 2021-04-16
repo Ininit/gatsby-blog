@@ -28,14 +28,14 @@ const webpackconfig = smp.wrap({
 
 获得构建速度数据
 
-1. 总过耗时240s
+1. 总过耗时 240s
 2. Plugins 耗时最严重是`ProgressPlugin` 耗时 10s
 3. Loaders 耗时严重的有`url-loader` 55s、`vue-loader` 80s、`babel-loader` 40s
-4. 基于 `development`模式，每次rebuild需要3s以上
+4. 基于 `development`模式，每次 rebuild 需要 3s 以上
 
 #### #0x02 针对上面做数据做优化
 
-##### 1. [优化DevTool](https://webpack.js.org/configuration/devtool/#root)
+##### 1. [优化 DevTool](https://webpack.js.org/configuration/devtool/#root)
 
 1. Production 模式
    1. 如果需要隐藏直接 none 模式即可
@@ -43,40 +43,40 @@ const webpackconfig = smp.wrap({
 2. Development 模式
    1. eval
    2. eval-source-map
-   3. eval-cheap-source-map 
+   3. eval-cheap-source-map
    4. eval-cheap-module-source-map ☑️
 
 ##### 2. 优化 loader 解析时间
 
 1. thread-loader
 
-   将这个 loader 放在其他loader 即可
+   将这个 loader 放在其他 loader 即可
 
    ```javascript
    // thread-loader 预热
    const jsWorkerPool = {
      // options
-     
+
      // 产生的 worker 的数量，默认是 (cpu 核心数 - 1)
      // 当 require('os').cpus() 是 undefined 时，则为 1
      workers: 2,
-     
+
      // 闲置时定时删除 worker 进程
      // 默认为 500ms
      // 可以设置为无穷大， 这样在监视模式(--watch)下可以保持 worker 持续存在
      poolTimeout: 2000
    };
-   
+
    const vueWorkerPool = {
      // 一个 worker 进程中并行执行工作的数量
      // 默认为 20
      workerParallelJobs: 2,
      poolTimeout: 2000
    };
-   
+
    threadLoader.warmup(jsWorkerPool, ['babel-loader']);
    threadLoader.warmup(vueWorkerPool, ['vue-loader']);
-   
+
    const webpackConfig = {
      ...
      module: {
@@ -108,8 +108,6 @@ const webpackconfig = smp.wrap({
      ...
    }
    ```
-
-   
 
 ##### 3. 利用缓存
 
@@ -197,10 +195,10 @@ new AutoDllPlugin({
 
 #### #0x03 结果
 
-1. 总过耗时43s
+1. 总过耗时 43s
 2. Plugins 耗时最严重是`ProgressPlugin` 耗时 10s
 3. Loaders 耗时严重的有`url-loader` 18s、`vue-loader` 55s、`babel-loader` 46s
-4. 基于 `development`模式，每次rebuild需要1.5s左右
+4. 基于 `development`模式，每次 rebuild 需要 1.5s 左右
 
 #### #0x04 参考链接
 

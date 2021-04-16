@@ -4,7 +4,7 @@ module.exports = {
     author: {
       name: `Ininit`,
       summary: `A developer`,
-      stack: `JavaScript/Typescript/Go`
+      stack: `JavaScript/Typescript/Go`,
     },
     description: `Ininit\`s 杂货铺`,
     siteUrl: `https://ininit.me/`,
@@ -82,7 +82,7 @@ module.exports = {
                   date: node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
+                  custom_elements: [{ 'content:encoded': node.html }],
                 })
               })
             },
@@ -105,7 +105,7 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
+            output: '/rss.xml',
           },
         ],
       },
